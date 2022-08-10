@@ -1,0 +1,50 @@
+
+<div  *ngIf="!pais; else divPais"
+      class="alert alert-info">
+  Espere por favor...
+</div>
+
+<ng-template #divPais>
+
+  <div class="row">
+    <div class="col-12">
+      <h1>Pais: <small>{{ pais[0].name.common }}</small></h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img class="img-thumbnail" [src]="pais[0].flags.png" [alt]="pais[0].name.common" />
+    </div>
+    <div class="col">
+      <h3>Informacion</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Polacion:</strong> {{ pais[0].population | number }}
+        </li>
+        <li class="list-group-item">
+          <strong>Capital:</strong> {{ pais[0].capital[0] }}
+        </li>
+        <li class="list-group-item">
+          <strong>Codifo Alpha:</strong> {{ pais[0].flag}}
+        </li>
+        <li class="list-group-item">
+          <strong>Bordes:</strong><span *ngFor="let borde of pais[0].borders"> {{ borde }} </span>
+        </li>
+        <li class="list-group-item">
+          <strong>Region:</strong> {{ pais[0].region }} {{ pais[0].subregion }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <pre class="mt-5">
+    {{ pais[0] | json }}
+  </pre>
+
+</ng-template>
+
+
